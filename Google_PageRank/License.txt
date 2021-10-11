@@ -1,0 +1,47 @@
+Licensing and copyright
+
+Licenses
+
+All copyrights to Google PageRank components for Delphi (GPRD) are exclusively
+owned by the author - Irnis Haliullin.
+
+GPRD is commercial software, which has also been released as freeware.
+The terms are as follows:
+
+Freeware/Demoware (no source, no support, no updates): You can use the
+components free of charge in your own products for either commercial or
+personal projects. There are no restrictions in the functionality of
+the components, and no "nag" messages will be produced. You are asked
+to place a note in your help file or the about screen to say that you
+are using a Irnis Haliullin product, with a link to our site.
+
+You will not receive the source code to the components. You can freely
+distribute the GPRD Freeware version.
+
+Commercial: If you are using the components in professional applications
+we strongly advise you to register for the commercial license. You receive
+all the rights of the freeware user, plus we offer the following additional
+features:
+
+ú You will receive the source code to the components. This allows you to modify
+  the components for your own purposes and to be independent when new versions
+  of Delphi or C++Builder are released. You are NOT allowed to distribute GPRD
+  source code.
+
+ú You will receive priority support for the components. 
+
+ú You will receive automatic updates to the components as and when they are
+  created. The reasons for updating are to ensure compatibility with new
+  versions of the Inprise compilers and for minor error fixes.
+
+Declaimer: Because of dependency the components from functionality of
+third party services (Google Search), the author disclaim any responsibility
+for components functionality failures caused by activity or inactivity of this
+third party services.
+
+Limitation of liability: The user of this software agrees to the following
+conditions: This software is used at your own risk. While every effort is
+made to ensure that this software is free of errors or unforeseen behaviour,
+data which becomes lost or corrupted either through use or misuse of this
+software can in no way be recovered or reconstructed author, and author
+can not be held responsible for the loss.

@@ -1,0 +1,97 @@
+type
+  // OnGetRank event handler type, used to make HTTP query for PageRank value
+  // Page - URL for query
+  // Rank - received document
+  // Should return TRUE when success and FALSE when fail
+  TOnGetRank = function (const Page: string; var Rank: string): Boolean of object;
+
+  // Internal thread class, used when Non-blocking mode
+  TGetRankThread = class(TThread)
+  private
+    FPage: string;
+    FRank: string;
+    FOldVersion: Boolean;
+    FOnGetRank: TOnGetRank;
+  public
+    procedure Execute; override;
+  end;
+
+  // Non-visual component for retrieving PageRank value
+  TPageRank = class(TComponent)
+  private
+    FRank: string;
+    FPage: string;
+    FAuto: Boolean;
+    FNonBlock: Boolean;
+    FOldVersion: Boolean;
+    FOnGetRank: TOnGetRank;
+    FControl: TControl;
+    FThread: TGetRankThread;
+    function GetFRank: Integer;
+    procedure SetFPage(const S: string);
+    procedure OnGetRankTerminate(Sender: TObject);
+  public
+    // This control will be invalidated when UpdatePageRank completed
+    property Control: TControl read FControl write FControl;
+    // Update the pagerank value for specified page
+    procedure UpdatePageRank;
+    function IsExecuted: Boolean;
+  published
+    property Rank: Integer read GetFRank;
+    property Page: string read FPage write SetFPage;
+    property Auto: Boolean read FAuto write FAuto;
+    property NonBlock: Boolean read FNonBlock write FNonBlock;
+    property OldVersion: Boolean read FOldVersion write FOldVersion;
+    property OnGetRank: TOnGetRank read FOnGetRank write FOnGetRank;
+  end;
+
+type
+  TPageRankControl = class(TGraphicControl)
+  private
+    FBitmap: TBitmap;
+    FPageRank: TPageRank;
+    FBorderColor: TColor;
+    FFillerColor: TColor;
+    FFilledColor: TColor;
+    FShowText: Boolean;
+    FBarWidth: Integer;
+  protected
+    procedure Paint; override;
+    procedure SetFPageRank(APageRank: TPageRank);
+    procedure SetFBorderColor(AValue: TColor);
+    procedure SetFFillerColor(AValue: TColor);
+    procedure SetFFilledColor(AValue: TColor);
+    procedure SetFShowText(AValue: Boolean);
+    procedure SetFBarWidth(AValue: Integer);
+  public
+    constructor Create(AOwner: TComponent); override;
+    destructor Destroy; override;
+  published
+    property PageRank: TPageRank read FPageRank write SetFPageRank;
+    property BorderColor: TColor read FBorderColor write SetFBorderColor default clGray;
+    property FillerColor: TColor read FFillerColor write SetFFillerColor default clGreen;
+    property FilledColor: TColor read FFilledColor write SetFFilledColor default clWhite;
+    property ShowText: Boolean read FShowText write SetFShowText default TRUE;
+    property BarWidth: Integer read FBarWidth write SetFBarWidth default 7;
+    property Align;
+    property Anchors;
+    property Color;
+    property Font;
+    property Hint;
+    property ParentColor;
+    property ParentFont;
+    property ParentShowHint;
+    property ShowHint;
+    property PopupMenu;
+    property Visible;
+    property OnClick;
+    property OnDblClick;
+    property OnMouseDown;
+    property OnMouseMove;
+    property OnMouseUp;
+    property OnContextPopup;
+  end;
+
+function GetURLQuery(const URL: string; OldVersion: Boolean = FALSE): string;
+function StrToPageRank(const S: string): Integer;
+
